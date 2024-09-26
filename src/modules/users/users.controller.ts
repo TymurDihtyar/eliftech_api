@@ -10,7 +10,7 @@ import {
 import { UsersService } from './services/users.service';
 import { UserResponseDto } from './dto/res/user.response.dto';
 import { CreateUserRequestDto } from './dto/req/create-user.request.dto';
-import { UpdateUserDto } from './dto/req/update-user.dto';
+import { UserEventQueryRequestDto } from './dto/req/user-event-query.request.dto';
 
 @Controller('users')
 export class UsersController {
@@ -29,15 +29,5 @@ export class UsersController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
   }
 }

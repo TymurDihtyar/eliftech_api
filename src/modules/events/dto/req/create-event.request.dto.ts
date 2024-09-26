@@ -1,8 +1,8 @@
-// import { IsInt, IsString } from 'class-validator';
+import { IsString } from 'class-validator';
 export class CreateEventRequestDto {
-  // @IsString()
+  @IsString()
   comment: string;
 
-  // @IsString()
+  @IsString()
   order_id: number;
 }

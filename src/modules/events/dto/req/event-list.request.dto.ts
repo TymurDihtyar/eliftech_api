@@ -1,22 +1,27 @@
-// import { Type } from 'class-transformer';
-// import { IsDate, IsInt, IsOptional, IsString, Min } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsDate, IsInt, IsOptional, IsString, Min } from 'class-validator';
 
 export class EventListRequestDto {
-  // @Type(() => Number)
-  // @IsInt()
-  // @Min(0)
+  @Type(() => Number)
+  @IsInt()
+  @Min(0)
+  @IsOptional()
   page: number;
 
-  // @IsString()
+  @IsString()
+  @IsOptional()
   title: string;
 
-  // @IsDate()
+  @IsDate()
+  @IsOptional()
   date: string;
 
-  // @IsString()
+  @IsString()
+  @IsOptional()
   organizer: string;
 
-  // @Type(() => String)
-  // @IsString()
+  @Type(() => String)
+  @IsString()
+  @IsOptional()
   sortBy: string;
 }

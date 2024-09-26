@@ -4,7 +4,7 @@ import { HealthModule } from './modules/health/health.module';
 import { EventsModule } from './modules/events/events.module';
 
 @Module({
-  imports: [UsersModule, HealthModule, EventsModule],
+  imports: [UsersModule, EventsModule, HealthModule],
   controllers: [],
   providers: [],
 })
