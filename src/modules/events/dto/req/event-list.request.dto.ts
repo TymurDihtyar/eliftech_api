@@ -19,9 +19,4 @@ export class EventListRequestDto {
   @IsString()
   @IsOptional()
   organizer: string;
-
-  @Type(() => String)
-  @IsString()
-  @IsOptional()
-  sortBy: string;
 }

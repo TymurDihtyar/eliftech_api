@@ -14,8 +14,7 @@ export class UserRepository extends Repository<UserEntity> {
     eventId: string,
   ): Promise<[UserEntity[], number]> {
     const usersOnPage = 12;
-
-    const allowedSortFields = ['name', 'email', 'birthDate'];
+    const allowedSortFields = ['name', 'email'];
 
     const queryBuilder = this.createQueryBuilder('user')
       .where('user.event_id = :eventId', { eventId })
@@ -23,12 +22,10 @@ export class UserRepository extends Repository<UserEntity> {
       .skip((query.page - 1) * usersOnPage);
 
     if (query.sortBy) {
-      const [sortField, sortOrder] = query.sortBy.split(':');
-      const order =
-        sortOrder && sortOrder.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
+      const order = query.sortBy.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
 
-      if (allowedSortFields.includes(sortField)) {
-        queryBuilder.orderBy(`user.${sortField}`, order);
+      if (allowedSortFields.includes(query.sortBy)) {
+        queryBuilder.orderBy(`user.${query.sortBy}`, order);
       }
     }
 

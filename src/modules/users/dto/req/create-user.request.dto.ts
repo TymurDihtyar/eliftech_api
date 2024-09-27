@@ -8,7 +8,7 @@ import {
   Min,
 } from 'class-validator';
 import { EWhereHere } from '../../enums/whereHere.enum.dto';
-import { Type } from "class-transformer";
+import { Type } from 'class-transformer';
 
 export class CreateUserRequestDto {
   @IsNotEmpty()
