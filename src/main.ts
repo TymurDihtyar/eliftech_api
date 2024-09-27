@@ -1,17 +1,19 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { AppConfig, ConfigType } from './configs/config.type';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const config = new DocumentBuilder()
+  const docConfig = new DocumentBuilder()
     .setTitle('Testing API')
-    .setDescription('The test API description')
+    .setDescription('The test API')
     .setVersion('1.0')
     .build();
-  const document = SwaggerModule.createDocument(app, config);
+  const document = SwaggerModule.createDocument(app, docConfig);
   SwaggerModule.setup('api', app, document, {
     swaggerOptions: {
       docExpansion: 'list',
@@ -25,7 +27,11 @@ async function bootstrap() {
       transform: true,
     }),
   );
-
-  await app.listen(3000);
+  const configService = app.get(ConfigService<ConfigType>);
+  const config = configService.get<AppConfig>('app');
+  await app.listen(config.port, () => {
+    Logger.log(`Server running  http://localhost:${config.port}`);
+    Logger.log(`Swagger running http://localhost:${config.port}/api`);
+  });
 }
 bootstrap();

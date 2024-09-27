@@ -1,7 +1,7 @@
 export class UserResponseDto {
-  event_id: string;
+  event_id: number;
   name: string;
   email: string;
   birthDate: Date;
-  whereHere: string;
+  whereHear: string;
 }

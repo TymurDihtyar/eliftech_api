@@ -1,33 +1,20 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
 import { UsersService } from './services/users.service';
 import { UserResponseDto } from './dto/res/user.response.dto';
 import { CreateUserRequestDto } from './dto/req/create-user.request.dto';
-import { UserEventQueryRequestDto } from './dto/req/user-event-query.request.dto';
+import { UserParamsRequestDto } from './dto/req/user-params.request.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserRequestDto): UserResponseDto {
-    return this.usersService.create(createUserDto) as any;
-  }
-
-  @Get()
-  findAll() {
-    return this.usersService.findAll();
+  create(@Body() dto: CreateUserRequestDto): Promise<UserResponseDto> {
+    return this.usersService.create(dto);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  findAll(@Param('id') id: string, @Query() query: UserParamsRequestDto) {
+    return this.usersService.findAllByEventId(query, id);
   }
 }
