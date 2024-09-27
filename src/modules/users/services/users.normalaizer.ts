@@ -6,7 +6,7 @@ import { UserResponseDto } from '../dto/res/user.response.dto';
 
 @Injectable()
 export class UserNormalizer {
-  public static toResponseDto(userEntity: UserEntity): UserResponseDto {
+  public static oneUserResponseDto(userEntity: UserEntity): UserResponseDto {
     return {
       event_id: userEntity.event_id,
       name: userEntity.name,
@@ -15,13 +15,13 @@ export class UserNormalizer {
       whereHear: userEntity.whereHear,
     };
   }
-  public static toListResponseDto(
+  public static userResponseDto(
     userEntities: UserEntity[],
     total: number,
     query: UserParamsRequestDto,
   ): UserListResponseDto {
     return {
-      users: userEntities.map(this.toResponseDto),
+      users: userEntities.map(this.oneUserResponseDto),
       meta: {
         page: query.page,
         total,

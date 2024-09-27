@@ -20,7 +20,7 @@ export class UsersService {
     const user = await this.userRepository.save(
       this.userRepository.create({ ...dto }),
     );
-    return UserNormalizer.toResponseDto(user);
+    return UserNormalizer.oneUserResponseDto(user);
   }
 
   public async findAllByEventId(
@@ -31,6 +31,6 @@ export class UsersService {
       query,
       id,
     );
-    return UserNormalizer.toListResponseDto(userEntities, total, query);
+    return UserNormalizer.userResponseDto(userEntities, total, query);
   }
 }
