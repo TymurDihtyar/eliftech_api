@@ -8,6 +8,11 @@ import { AppConfig, ConfigType } from './configs/config.type';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    origin: '*',
+    credentials: true,
+  });
+
   const docConfig = new DocumentBuilder()
     .setTitle('Testing API')
     .setDescription('The test API')
