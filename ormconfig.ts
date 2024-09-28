@@ -21,4 +21,8 @@ export default new DataSource({
   ],
   synchronize: false,
   migrationsRun: true,
+  ssl: {
+    require: true,
+    rejectUnauthorized: false,
+  },
 })
