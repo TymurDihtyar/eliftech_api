@@ -13,5 +13,6 @@ export default (): ConfigType => ({
     user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     dbName: process.env.POSTGRES_DB,
+    SSL_CA: process.env.POSTGRES_SSL_CA,
   },
 });

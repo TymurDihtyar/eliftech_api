@@ -13,4 +13,5 @@ export type PostgresConfig = {
   user: string;
   password: string;
   dbName: string;
+  SSL_CA?: string;
 };
