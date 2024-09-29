@@ -4,7 +4,7 @@ import * as process from "process";
 import * as dotenv from "dotenv";
 import getConfig from "./src/configs/config";
 
-dotenv.config({ path: './environments/local.env'});
+dotenv.config({ path: './.env'});
 const postgresConfig = getConfig().postgres;
 export default new DataSource({
   type: 'postgres',
