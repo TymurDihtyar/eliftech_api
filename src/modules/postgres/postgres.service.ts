@@ -22,6 +22,9 @@ export class PostgresService implements TypeOrmOptionsFactory {
         path.join(process.cwd(), 'dist', 'database', 'entities', '*.entity.js'),
       ],
       synchronize: false,
+      ssl: {
+        rejectUnauthorized: false,
+      },
     };
   }
 }
