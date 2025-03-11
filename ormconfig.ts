@@ -22,6 +22,7 @@ export default new DataSource({
   synchronize: false,
   migrationsRun: true,
   ssl: {
+    ca: postgresConfig.SSL_CA,
     rejectUnauthorized: false
   }
 })
